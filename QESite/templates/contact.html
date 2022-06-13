@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load cms_tags menu_tags sekizai_tags static %}
+
+{% block title %}{% page_attribute "page_title" %}{% endblock title %}
+
+{% block content %}
+
+<div class="row">
+
+    <div class="d-none d-lg-block col-lg-3">
+        <aside id="left-sidebar">
+            {% static_placeholder "contact / help left sidebar" %}
+        </aside>
+    </div>
+
+    <div class="col-12 col-lg-7">
+        <form class="bg-light rounded border border-secondary p-4" id="contactForm" action="http://127.0.0.1:8000/" method="POST">
+            {% csrf_token %}
+            <h1 class="text-center mb-4">Contact Form</h1>
+            <div class="form-group row">
+                <label for="firstName" class="col-sm-3 col-form-label">First Name</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="firstName" placeholder="Enter First Name" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="surname" class="col-sm-3 col-form-label">Surname</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="surname" placeholder="Enter Surname" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="email" class="col-sm-3 col-form-label">Email</label>
+                <div class="col-sm-9">
+                    <input type="email" class="form-control" id="email" placeholder="Enter Email" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="age" class="col-sm-3 col-form-label">Age</label>
+                <div class="col-sm-9">
+                    <input type="number" class="form-control" id="age" placeholder="Enter Age" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <legend class="col-sm-3 col-form-label">Gender</legend>
+                <div class="col-sm-9 my-auto">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="genderRadioOptions" id="inlineRadioFemale" value="option1" required>
+                        <label class="form-check-label" for="inlineRadioFemale">Female</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="genderRadioOptions" id="inlineRadioMale" value="option2" required>
+                        <label class="form-check-label" for="inlineRadioMale">Male</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="genderRadioOptions" id="inlineRadioOther" value="option3" required>
+                        <label class="form-check-label" for="inlineRadioOther">Other</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group text-center">
+                <label for="message" class="col-form-control col-form-label-lg">Message</label>
+                <textarea class="form-control" id="message" rows="8" required></textarea>
+            </div>
+            <div class="row justify-content-center mt-4">
+                <input type="submit" class="btn btn-primary btn-lg" value="Submit">
+            </div>
+        </form>
+    </div>
+
+    <div class="col-12 col-lg-2">
+        <aside id="right-sidebar">
+            {% static_placeholder "right sidebar" %}
+        </aside>
+    </div>
+
+</div>
+
+{% endblock content %}

@@ -1,0 +1,8 @@
+{% load cms_tags %}
+
+
+<div class="my-3 mx-auto bg-secondary rounded node-slot" ondrop="drop(event)" ondragover="allowDrop(event)" id="{{instance.node_slot_title}}">
+    {% for plugin in instance.child_plugin_instances %}
+        {% render_plugin plugin %}
+    {% endfor %}
+</div>

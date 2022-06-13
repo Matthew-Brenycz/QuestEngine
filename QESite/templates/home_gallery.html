@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load cms_tags menu_tags sekizai_tags static %}
+
+{% block title %}{% page_attribute "page_title" %}{% endblock title %}
+
+{% block content %}
+
+<div class="row">
+
+    <div class="col-12 col-lg-10" id="gallery-content">
+        {% placeholder "main content" %}
+    </div>
+
+    <div class="col-12 col-lg-2">
+        <aside id="right-sidebar">
+            {% static_placeholder "right sidebar" %}
+        </aside>
+    </div>
+
+</div>
+    
+{% endblock content %}

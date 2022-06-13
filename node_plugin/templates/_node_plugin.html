@@ -1,0 +1,8 @@
+{% load cms_tags %}
+
+<div class="m-1 text-center bg-secondary rounded node" id="{{instance.node_title}}" draggable="true" ondragstart="drag(event)">
+    {% for plugin in instance.child_plugin_instances %}
+        {% render_plugin plugin %}
+    {% endfor %}
+</div>
+

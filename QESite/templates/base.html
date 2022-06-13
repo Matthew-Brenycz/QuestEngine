@@ -1,0 +1,76 @@
+{% load cms_tags menu_tags sekizai_tags static %}
+<!doctype html>
+<html>
+    <head>
+        <title>{% block title %}This is a Page Title{% endblock title %}</title>
+        <meta charset="utf-8">
+        <meta name="description" conent="RPG Scenario Designer">
+        <meta name="keywords" content="RPG, roleplaying-game, scenario, adventure">
+        <meta name="author" content="Rachel McGonigal">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        {% render_block "css" %}
+    </head>
+
+    <body id="body">
+
+        <div class="d-flex flex-column min-vh-100">
+
+            {% cms_toolbar %}
+
+            <nav class="navbar navbar-expand-sm navbar-dark" id="main-nav">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <header id="small-banner-container" class="d-sm-none d-block" alt="Banner image of clouds and mountains.">
+                    <span id="small-banner-text">Quest Engine</span>
+                </header>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        {% show_menu 0 100 100 100 "menu/main_menu.html" %}
+                    </ul>
+                </div>
+            </nav>
+
+            <header id="banner-container" class="d-sm-block d-none">
+                <div id="banner-text">Quest Engine</div>
+            </header>
+
+            <div class="container py-3" id="page-content-container">
+                {% block content %}{% endblock content %}
+                <button id="back-to-top-button" title="Go to top">Back to Top</button>
+            </div>
+
+        </div>
+
+        <footer class="mt-2 mb-5 mb-sm-0 navbar navbar-expand-sm copyright_footer justify-content-center">
+            <a class="nav-link">{% static_placeholder 'copyright' %}</a>
+        </footer>
+        
+        {% render_block "js" %}
+
+        {% addtoblock "css" %}
+
+            {% comment %} Bootstrap 4 CSS {% endcomment %}
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+            
+            {% comment %} Custom CSS {% endcomment %}
+            <link rel="stylesheet" href={% static "qe_styles.css" %}>
+
+        {% endaddtoblock %}
+
+        {% addtoblock "js" %}
+
+            {% comment %} Bootstrap 4 JS {% endcomment %}
+            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+
+            {% comment %} Custom JS for Back-to-Top button  {% endcomment %}
+            <script src={% static "qe_common_scripts.js" %}></script>
+
+            {% block template_scripts %}{% endblock template_scripts %}
+
+        {% endaddtoblock %}
+
+
+    </body>
+</html>

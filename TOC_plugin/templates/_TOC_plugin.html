@@ -1,0 +1,205 @@
+{% load cms_tags menu_tags sekizai_tags static %}
+
+{% comment %} Dropdown button for tablet/mobile device widths {% endcomment %}
+
+<div class="card d-lg-none mb-2">
+  <div class="card-header toc-dropdown">
+    <h2 class="mb-0">
+      <button class="p-0 btn btn-link btn-block text-left collapsed toc-header-text text-center" type="button" data-toggle="collapse" data-target="#table-of-contents" aria-expanded="false" aria-controls="collapse-table-of-contents" id="accordion-control">
+        Open Table of Contents
+      </button>
+    </h2>
+  </div>
+</div>
+
+
+<div class="accordion collapse" id="table-of-contents">
+
+  {% page_attribute "page_title" request.current_page.parent_page as parent %}
+
+{% comment %} Scenario Introduction Link, if navigated to a subpage. {% endcomment %}
+
+  {% if parent != "Scenario Gallery" %}
+
+    <div class="card border">
+      <div class="card-header toc-intro" id="introduction-page-link">
+        <h2 class="mb-0">
+          <button class="toc-header-text p-0 btn btn-link btn-block text-left collapsed" type="button" onclick="location.href='{% page_url request.current_page.parent_page %}';">
+            Introduction
+          </button>
+        </h2>
+      </div>
+    </div>
+
+  {% endif %}
+
+{% comment %} Locations Panel {% endcomment %}
+
+  <div class="card">
+
+    <div class="card-header toc-category" id="heading-one">
+      <h2 class="mb-0">
+        <button class="p-0 btn btn-link btn-block text-left collapsed toc-header-text" type="button" data-toggle="collapse" data-target="#collapse-one" aria-expanded="false" aria-controls="collapse-one">
+          Locations
+        </button>
+      </h2>
+    </div>
+
+    <div id="collapse-one" class="collapse" aria-labelledby="heading-one" data-parent="#table-of-contents">
+      <div class="card-body toc-listings p-0">
+        <ol class="list-unstyled my-auto">
+            {% for anchortext, link in Locations %}
+              {% with "/"|add:link|add:"/" as full_url %}
+                <li class="py-1 pl-4 pr-1 border-bottom"><a href="{{ full_url }}">{{ anchortext }}</a></li>
+              {% endwith %}
+            {% empty %}
+              <li class="py-1 pl-4 pr-1 border-bottom">There are no Location pages</li>
+            {% endfor %}
+        </ol>
+      </div>
+    </div>
+
+  </div>
+
+{% comment %} NPCs Panel {% endcomment %}
+
+  <div class="card">
+
+    <div class="card-header toc-category" id="heading-two">
+      <h2 class="mb-0">
+        <button class="p-0 btn btn-link btn-block text-left collapsed toc-header-text" type="button" data-toggle="collapse" data-target="#collapse-two" aria-expanded="false" aria-controls="collapse-two">
+          NPCs
+        </button>
+      </h2>
+    </div>
+
+    <div id="collapse-two" class="collapse" aria-labelledby="heading-two" data-parent="#table-of-contents">
+      <div class="card-body toc-listings p-0">
+        <ol class="list-unstyled my-auto">
+            {% for anchortext, link in NPCs %}
+              {% with "/"|add:link|add:"/" as full_url %}
+                <li class="py-1 pl-4 pr-1 border-bottom"><a href="{{ full_url }}">{{ anchortext }}</a></li>
+              {% endwith %}
+            {% empty %}
+              <li class="py-1 pl-4 pr-1 border-bottom">There are no NPC pages</li>
+            {% endfor %}
+        </ol>
+      </div>
+    </div>
+
+  </div>
+
+{% comment %} Items Panel {% endcomment %}
+
+  <div class="card">
+
+    <div class="card-header toc-category" id="heading-three">
+      <h2 class="mb-0">
+        <button class="p-0 btn btn-link btn-block text-left collapsed toc-header-text" type="button" data-toggle="collapse" data-target="#collapse-three" aria-expanded="false" aria-controls="collapse-three">
+          Items
+        </button>
+      </h2>
+    </div>
+
+    <div id="collapse-three" class="collapse" aria-labelledby="heading-three" data-parent="#table-of-contents">
+      <div class="card-body toc-listings p-0">
+        <ol class="list-unstyled my-auto">
+            {% for anchortext, link in Items %}
+              {% with "/"|add:link|add:"/" as full_url %}
+                <li class="py-1 pl-4 pr-1 border-bottom"><a href="{{ full_url }}">{{ anchortext }}</a></li>
+              {% endwith %}
+            {% empty %}
+              <li class="py-1 pl-4 pr-1 border-bottom">There are no Item pages</li>
+            {% endfor %}
+        </ol>
+      </div>
+    </div>
+
+  </div>
+
+
+{% comment %} Lore Panel {% endcomment %}
+
+  <div class="card">
+
+    <div class="card-header toc-category" id="heading-four">
+      <h2 class="mb-0">
+        <button class="p-0 btn btn-link btn-block text-left collapsed toc-header-text" type="button" data-toggle="collapse" data-target="#collapse-four" aria-expanded="false" aria-controls="collapse-four">
+          Lore
+        </button>
+      </h2>
+    </div>
+
+    <div id="collapse-four" class="collapse" aria-labelledby="heading-four" data-parent="#table-of-contents">
+      <div class="card-body toc-listings p-0">
+        <ol class="list-unstyled my-auto">
+            {% for anchortext, link in Lore %}
+              {% with "/"|add:link|add:"/" as full_url %}
+                <li class="py-1 pl-4 pr-1 border-bottom"><a href="{{ full_url }}">{{ anchortext }}</a></li>
+              {% endwith %}
+            {% empty %}
+              <li class="py-1 pl-4 pr-1 border-bottom">There are no Lore pages</li>
+            {% endfor %}
+        </ol>
+      </div>
+    </div>
+
+  </div>
+
+{% comment %} Node Diagrams Panel {% endcomment %}
+
+  <div class="card">
+
+    <div class="card-header toc-category" id="heading-five">
+      <h2 class="mb-0">
+        <button class="p-0 btn btn-link btn-block text-left collapsed toc-header-text" type="button" data-toggle="collapse" data-target="#collapse-five" aria-expanded="false" aria-controls="collapse-five">
+          Node Diagrams
+        </button>
+      </h2>
+    </div>
+
+    <div id="collapse-five" class="collapse" aria-labelledby="heading-five" data-parent="#table-of-contents">
+      <div class="card-body toc-listings p-0">
+        <ol class="list-unstyled my-auto">
+            {% for anchortext, link in Node_Diagrams %}
+              {% with "/"|add:link|add:"/" as full_url %}
+                <li class="py-1 pl-4 pr-1 border-bottom"><a href="{{ full_url }}">{{ anchortext }}</a></li>
+              {% endwith %}
+            {% empty %}
+              <li class="py-1 pl-4 pr-1 border-bottom">There are no Node Diagram pages</li>
+            {% endfor %}
+        </ol>
+      </div>
+    </div>
+
+  </div>
+
+
+{% comment %} Revelation Lists Panel {% endcomment %}
+
+  <div class="card">
+
+    <div class="card-header toc-category" id="heading-six">
+      <h2 class="mb-0">
+        <button class="p-0 btn btn-link btn-block text-left collapsed toc-header-text" type="button" data-toggle="collapse" data-target="#collapse-six" aria-expanded="false" aria-controls="collapse-six">
+          Revelation Lists
+        </button>
+      </h2>
+    </div>
+
+    <div id="collapse-six" class="collapse" aria-labelledby="heading-six" data-parent="#table-of-contents">
+      <div class="card-body toc-listings p-0">
+        <ol class="list-unstyled my-auto">
+            {% for anchortext, link in Revelation_Lists %}
+              {% with "/"|add:link|add:"/" as full_url %}
+                <li class="py-1 pl-4 pr-1 border-bottom"><a href="{{ full_url }}">{{ anchortext }}</a></li>
+              {% endwith %}
+            {% empty %}
+              <li class="py-1 pl-4 pr-1 border-bottom">There are no Revelation List pages</li>
+            {% endfor %}
+        </ol>
+      </div>
+    </div>
+  </div>
+  
+</div>
